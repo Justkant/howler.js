@@ -589,6 +589,7 @@
         headers: o.xhr && o.xhr.headers ? o.xhr.headers : null,
         withCredentials: o.xhr && o.xhr.withCredentials ? o.xhr.withCredentials : false,
       };
+      self._html5CrossOrigin = o.html5CrossOrigin || null;
 
       // Setup all other default properties.
       self._duration = 0;
@@ -2249,6 +2250,7 @@
         self._node.addEventListener('ended', self._endFn, false);
 
         // Setup the new audio node.
+        self._node.crossOrigin = parent._html5CrossOrigin
         self._node.src = parent._src;
         self._node.preload = parent._preload === true ? 'auto' : parent._preload;
         self._node.volume = volume * Howler.volume();
